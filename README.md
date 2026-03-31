@@ -35,3 +35,58 @@ ArthaSaathi provides a user-friendly platform where users can:
 ---
 
 ## 🏗️ System Architecture
+User (Browser)
+↓
+Frontend (HTML, CSS, JS)
+↓
+Supabase Client
+↓
+Supabase Backend
+├── Authentication
+├── PostgreSQL Database
+└── Row Level Security
+
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** HTML, CSS, JavaScript  
+- **Backend:** Supabase  
+- **Database:** PostgreSQL  
+- **Authentication:** Supabase Auth  
+- **AI Logic:** Rule-based (extendable to ML/AI models)
+
+---
+
+## 🔐 Security
+
+- User-based data isolation using Row Level Security (RLS)  
+- Secure authentication system  
+- Data stored safely in cloud database  
+
+---
+
+## 📸 Screenshots
+
+_Add your app screenshots here_
+
+---
+
+## 🚀 Future Enhancements
+
+- 🎯 Goal-based savings tracking  
+- 📈 Investment & SIP tracking  
+- 📊 Advanced analytics & charts  
+- 🤖 AI-powered personalized financial planning  
+- 📱 Mobile application (Android/iOS)  
+- 🔔 Notifications & reminders  
+- 💳 Bank API integration for real-time transactions  
+
+---
+
+## 📦 Installation & Setup
+
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/arthasaathi.git
