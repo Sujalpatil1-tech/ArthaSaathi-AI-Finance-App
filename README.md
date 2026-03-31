@@ -87,6 +87,24 @@ _Add your app screenshots here_
 
 ## 📦 Installation & Setup
 
-1. Clone the repository:
-```bash
-git clone https://github.com/your-username/arthasaathi.git
+1. Clone the repository:Open the project folder:
+cd arthasaathi
+Add your Supabase credentials in index.html:
+const SUPABASE_URL = "your_project_url";
+const SUPABASE_KEY = "your_anon_key";
+Open index.html in browser
+🧪 Usage
+Sign up / Login
+Enter income and expenses
+Click "Analyze"
+View dashboard insights
+Use AI chat for financial advice
+👨‍💻 Author
+
+Sujal Patil
+B.E. AI & Data Science
+
+🌟 Show Your Support
+
+If you like this project, please ⭐ star the repository!
+```bash 
