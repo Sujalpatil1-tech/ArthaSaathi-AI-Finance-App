@@ -1,0 +1,317 @@
+# 💰 ArthaSaathi — AI Personal Finance Advisor (Hindi/Marathi)
+
+A complete startup-level MVP: React frontend + Flask backend + SQLite + AI insight engine.
+Supports **English, Hindi, and Marathi**.
+
+---
+
+## 📁 Project Structure
+
+```
+ai-finance-advisor/
+│
+├── backend/
+│   ├── app.py                    ← Flask entry point
+│   ├── requirements.txt
+│   │
+│   ├── database/
+│   │   ├── __init__.py
+│   │   └── db.py                 ← SQLite connection + init_db()
+│   │
+│   ├── routes/
+│   │   ├── __init__.py
+│   │   ├── income_routes.py      ← POST /income, GET /income
+│   │   ├── expense_routes.py     ← POST /expenses, GET /expenses
+│   │   ├── analysis_routes.py    ← GET /analysis, POST /analysis
+│   │   └── chat_routes.py        ← POST /chat
+│   │
+│   └── utils/
+│       ├── __init__.py
+│       ├── insight_engine.py     ← AI insight generation engine
+│       └── translations.py       ← en/hi/mr dictionary
+│
+├── frontend/
+│   └── index.html                ← Complete React app (no build step)
+│
+└── README.md
+```
+
+---
+
+## 🚀 Setup & Run
+
+### Step 1 — Backend (Flask)
+
+```bash
+cd backend
+
+# Create virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the server
+python app.py
+```
+
+Server starts at: **http://localhost:5000**
+
+### Step 2 — Frontend (React)
+
+No build step needed! Just open in browser:
+
+```bash
+# Open directly
+open frontend/index.html
+
+# OR use a simple HTTP server (recommended)
+cd frontend
+python -m http.server 3000
+# Then open: http://localhost:3000
+```
+
+---
+
+## 🔌 API Reference
+
+### Base URL: `http://localhost:5000/api`
+
+---
+
+### POST /income
+Save monthly income.
+
+**Request:**
+```json
+{
+  "amount": 50000,
+  "month": "2024-06",
+  "source": "Salary"
+}
+```
+
+**Response:**
+```json
+{
+  "message": "Income saved successfully",
+  "amount": 50000,
+  "month": "2024-06"
+}
+```
+
+---
+
+### POST /expenses
+Save expense categories for a month.
+
+**Request:**
+```json
+{
+  "month": "2024-06",
+  "expenses": {
+    "food": 8000,
+    "travel": 3000,
+    "shopping": 5000,
+    "entertainment": 2000,
+    "utilities": 1500,
+    "rent": 12000
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "message": "6 expense categories saved for 2024-06",
+  "saved": [...]
+}
+```
+
+---
+
+### POST /analysis ⭐ (Main endpoint)
+One-shot analysis — send income + expenses, get AI insights instantly.
+
+**Request:**
+```json
+{
+  "income": 50000,
+  "expenses": {
+    "food": 8000,
+    "travel": 3000,
+    "shopping": 5000,
+    "entertainment": 2000,
+    "utilities": 1500,
+    "rent": 12000
+  },
+  "lang": "en"
+}
+```
+
+**Response:**
+```json
+{
+  "income": 50000,
+  "total_expenses": 31500,
+  "savings": 18500,
+  "savings_percentage": 37.0,
+  "status": "excellent",
+  "insights": [
+    "✅ Excellent! Your savings rate is 37.0% — above the 30% benchmark. Keep it up!",
+    "🥗 Food spending looks reasonable at ₹8,000.",
+    "📊 Your biggest expense category is 'Rent' — ₹12,000 (24.0% of income).",
+    "💰 You are saving ₹18,500. If consistent, your annual savings will be ₹2,22,000!",
+    "🛍️ Leisure spending (entertainment + shopping) is high at ₹7,000 (14.0% of income)."
+  ],
+  "suggestions": [
+    "🏆 Great job! Consider investing your surplus of ₹18,500 in FD, mutual funds, or SIP for better returns.",
+    "🛡️ Build an emergency fund target of ₹3,00,000 (6 months of income)",
+    "📈 Start a monthly SIP of ₹9,500/month in index funds for long-term wealth creation.",
+    "🛒 Shopping expenses are high. Use the 30-day rule: wait before any non-essential purchase."
+  ],
+  "expense_breakdown": {
+    "food": 16.0,
+    "travel": 6.0,
+    "shopping": 10.0,
+    "entertainment": 4.0,
+    "utilities": 3.0,
+    "rent": 24.0
+  }
+}
+```
+
+---
+
+### GET /analysis
+Retrieve analysis from saved database records.
+
+```
+GET /api/analysis?month=2024-06&lang=hi
+```
+
+---
+
+### POST /chat
+AI chatbot endpoint.
+
+**Request:**
+```json
+{
+  "message": "Can I buy a phone?",
+  "lang": "en"
+}
+```
+
+**Response:**
+```json
+{
+  "reply": "Based on your finances, you CAN consider buying a phone IF your savings are above 20%...",
+  "intent": "buy_phone",
+  "lang": "en",
+  "savings_context": 37.0
+}
+```
+
+**Supported chat questions:**
+- "Can I buy a phone?" / "क्या फोन खरीद सकता हूं?"
+- "How to save money?" / "पैसे कैसे बचाएं?"
+- "How to invest?" / "निवेश कैसे करें?"
+- "Tell me about budget rules"
+- "About EMI" / "Can I buy a bike/car/laptop?"
+
+---
+
+## 🧪 Testing with curl
+
+```bash
+# Health check
+curl http://localhost:5000/
+
+# Save income
+curl -X POST http://localhost:5000/api/income \
+  -H "Content-Type: application/json" \
+  -d '{"amount": 50000, "month": "2024-06"}'
+
+# Save expenses
+curl -X POST http://localhost:5000/api/expenses \
+  -H "Content-Type: application/json" \
+  -d '{"month": "2024-06", "expenses": {"food": 8000, "travel": 3000, "rent": 12000, "shopping": 5000}}'
+
+# Quick analysis (English)
+curl -X POST http://localhost:5000/api/analysis \
+  -H "Content-Type: application/json" \
+  -d '{"income": 50000, "expenses": {"food": 8000, "travel": 3000, "rent": 12000}, "lang": "en"}'
+
+# Quick analysis (Hindi)
+curl -X POST http://localhost:5000/api/analysis \
+  -H "Content-Type: application/json" \
+  -d '{"income": 50000, "expenses": {"food": 8000, "travel": 3000, "rent": 12000}, "lang": "hi"}'
+
+# Chat (Marathi)
+curl -X POST http://localhost:5000/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message": "फोन खरेदी करू शकतो का?", "lang": "mr"}'
+```
+
+---
+
+## 📊 Sample Data for Testing
+
+| Income | Expenses | Savings | Status |
+|--------|----------|---------|--------|
+| ₹50,000 | ₹31,500 | ₹18,500 | Excellent (37%) |
+| ₹30,000 | ₹25,000 | ₹5,000  | Low (16.7%) |
+| ₹20,000 | ₹19,000 | ₹1,000  | Critical (5%) |
+| ₹80,000 | ₹45,000 | ₹35,000 | Excellent (43.75%) |
+
+---
+
+## 💡 AI Insight Logic
+
+The insight engine uses industry-standard financial benchmarks:
+
+| Savings Rate | Status    | Action |
+|-------------|-----------|--------|
+| > 30%       | Excellent | Invest surplus |
+| 20–30%      | Good      | Push to 30% |
+| 10–20%      | Average   | Reduce expenses |
+| < 10%       | Critical  | Urgent action needed |
+
+**Expense thresholds:**
+- Food > 30% of income → High alert
+- Rent > 35% of income → High alert
+- Entertainment > 10% → Reduce leisure
+- Shopping > 15% → Budget rule suggested
+
+---
+
+## 🌐 Language Support
+
+| Code | Language | Script |
+|------|----------|--------|
+| en   | English  | Latin |
+| hi   | Hindi    | देवनागरी |
+| mr   | Marathi  | मराठी |
+
+Change language using the dropdown in the navbar. All insights, suggestions, and chat responses adapt automatically.
+
+---
+
+## 🏆 Built for Hackathon
+
+**Tech Stack:**
+- React 18 (CDN, no build step)
+- Python Flask 3.0
+- SQLite (zero configuration)
+- Pure rule-based AI (no API costs)
+
+**Judging criteria strengths:**
+- ✅ Multilingual (3 languages)
+- ✅ Real AI insights (not just calculations)
+- ✅ Beautiful, responsive UI
+- ✅ Full CRUD with persistent storage
+- ✅ Chatbot with context awareness
+- ✅ Production-ready architecture
+
