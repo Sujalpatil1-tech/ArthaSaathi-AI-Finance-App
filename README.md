@@ -68,6 +68,15 @@ Supabase Backend
 ---
 
 ## 📸 Screenshots
+<img width="1918" height="836" alt="Screenshot 2026-04-19 165432" src="https://github.com/user-attachments/assets/b0e7858d-b704-4617-8328-900067a88c9e" />
+<img width="1887" height="896" alt="Screenshot 2026-04-19 165753" src="https://github.com/user-attachments/assets/20182944-20c8-4fe0-b1c9-58bae0783819" />
+<img width="1895" height="911" alt="Screenshot 2026-04-19 165926" src="https://github.com/user-attachments/assets/cc1c526a-c426-4576-8d9a-a81043b61a3a" />
+<img width="1890" height="907" alt="Screenshot 2026-04-19 170239" src="https://github.com/user-attachments/assets/b879edb1-06a2-4f4f-8ee7-832771e381c8" />
+
+<img width="1896" height="908" alt="Screenshot 2026-04-19 170404" src="https://github.com/user-attachments/assets/55ca7eeb-383e-46c1-87ca-7e1825d0fece" />
+
+<img width="1886" height="901" alt="Screenshot 2026-04-19 170547" src="https://github.com/user-attachments/assets/f2524993-beeb-4f18-9300-0612470e4897" />
+
 <img width="1897" height="913" alt="Screenshot 2026-04-19 170745" src="https://github.com/user-attachments/assets/6ee646d1-b32c-48aa-a874-85bebcb37067" />
 
 
