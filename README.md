@@ -68,8 +68,8 @@ Supabase Backend
 ---
 
 ## 📸 Screenshots
+<img width="1897" height="913" alt="Screenshot 2026-04-19 170745" src="https://github.com/user-attachments/assets/6ee646d1-b32c-48aa-a874-85bebcb37067" />
 
-_Add your app screenshots here_
 
 ---
 
